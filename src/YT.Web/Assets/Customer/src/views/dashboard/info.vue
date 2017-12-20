@@ -139,7 +139,9 @@
               </Col>
             </Row>
             <Row v-if="files">
-              <Col offset="12" span="12" :key="index" v-for="(item,index) in files"> {{item.profileName}} 删除
+              <Col offset="12" span="12" :key="index" v-for="(item,index) in files"> {{item.profileName}}
+              <a @click="remove(item)" >删除</a>
+              <a @click="download(item)" >下载</a>
               </Col>
             </Row>
           </Row>
@@ -221,6 +223,14 @@ export default {
     }
   },
   methods: {
+    remove(item) {
+      this.form.formProfiles = this.form.formProfiles.filter(
+        c => c.profileId !== item.profileId
+      );
+    },
+    download(item) {
+      window.open(item.profileUrl);
+    },
     childRemove(guid) {
       deleteFile(guid);
       this.form.formProfiles = this.form.formProfiles.filter(

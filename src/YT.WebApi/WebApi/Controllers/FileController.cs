@@ -25,25 +25,29 @@ namespace YT.WebApi.Controllers
     {
         private readonly IAppFolders _appFolders;
         private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<FormProfile> _profile;
+        private readonly IRepository<FormProfile> _profileRepository;
         private readonly IRepository<Order> _ordeRepository;
         public static string Host => ConfigurationManager.AppSettings.Get("WebSiteRootAddress");
         private readonly IBinaryObjectManager _binaryObjectManager;
 
-        /// <summary>
-        /// ctor
-        /// </summary>
-        /// <param name="appFolders"></param>
-        /// <param name="binaryObjectManager"></param>
-        /// <param name="productRepository"></param>
-        /// <param name="ordeRepository"></param>
+     /// <summary>
+     /// ctor
+     /// </summary>
+     /// <param name="appFolders"></param>
+     /// <param name="binaryObjectManager"></param>
+     /// <param name="ordeRepository"></param>
+     /// <param name="productRepository"></param>
+     /// <param name="profileRepository"></param>
         public FileController(IAppFolders appFolders, IBinaryObjectManager binaryObjectManager,
-            IRepository<Order> ordeRepository, IRepository<Product> productRepository)
+            IRepository<Order> ordeRepository,
+            IRepository<Product> productRepository, 
+            IRepository<FormProfile> profileRepository)
         {
             _appFolders = appFolders;
             _binaryObjectManager = binaryObjectManager;
             _ordeRepository = ordeRepository;
             _productRepository = productRepository;
+            _profileRepository = profileRepository;
         }
 
         public AjaxResponse DownloadTempFile(FileDto file)
@@ -226,7 +230,7 @@ namespace YT.WebApi.Controllers
         [HttpGet]
         public async Task DeleteFile(Guid guid)
         {
-            await _profile.DeleteAsync(c => c.ProfileId == guid);
+            await _profileRepository.DeleteAsync(c => c.ProfileId == guid);
             var file = await _binaryObjectManager.GetOrNullAsync(guid);
             if (file != null)
             {

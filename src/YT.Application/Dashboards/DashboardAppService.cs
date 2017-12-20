@@ -93,8 +93,6 @@ namespace YT.Dashboards
         {
             var query = _ordeRepository.GetAll().Where(c => c.CustomerId == input.CustomerId);
             var chargeRecords = await query
-            .OrderBy(input.Sorting)
-            .PageBy(input)
             .ToListAsync();
             var products = await _productRepository.GetAllListAsync();
             var output = (from o in chargeRecords
@@ -104,7 +102,7 @@ namespace YT.Dashboards
                               Id = o.Id,
                               Cate = o.LevelTwo,
                               Count = o.Count,
-                              CustomerName = o.Form.CompanyName,
+                              CustomerName =o.Form!=null? o.Form.CompanyName:"",
                               FormId = o.FormId,
                               Price = o.Price,
                               ProductName = o.ProductName,

@@ -54,7 +54,7 @@ namespace YT.Products.Exporting
                     _ => _.Count,
                     _ => _.TotalPrice,
                     _ => _.OrderNum,
-                    _ => _timeZoneConverter.Convert(_.CreationTime, _abpSession.TenantId, _abpSession.GetUserId()),
+                    _ => _.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"),
                     _ => _.CustomerName
 
                 );

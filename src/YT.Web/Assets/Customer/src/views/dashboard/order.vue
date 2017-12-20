@@ -170,7 +170,15 @@ export default {
       });
     },
     exportData() {
-      exportOrders({ customerId: this.customerId }).then(r => {
+      const id = localStorage.getItem("Credit-Id");
+      if (!id) {
+        this.$router.push({
+          path: "/login"
+        });
+        return;
+      }
+      this.params.customerId = id;
+      exportOrders(this.params).then(r => {
         if (r.data.success) {
           this.$down(
             r.data.result.fileType,
