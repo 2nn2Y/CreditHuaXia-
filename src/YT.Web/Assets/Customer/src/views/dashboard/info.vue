@@ -106,6 +106,7 @@
               <p class='g9b9ea0 g-center'>身份证反面</p>
               </Col>
             </Row>
+
             <Row style="margin-top: 20px">
               <Col span="9">
               <h3>企业所属行业特有许可证或企业荣誉：</h3>
@@ -144,7 +145,9 @@
                   <Icon type='ios-plus-empty' size='38' style='color: #d3d3d3'></Icon>
                 </div>
               </Upload> -->
-              <Upload   multiple  :show-upload-list="false"  :on-error="Fileerror" :on-success="Filesuccess" :headers="upload.headers" :action="upload.url">
+              <Upload   multiple  :show-upload-list="false"
+               :on-error="Fileerror" :on-success="Filesuccess"
+               :headers="upload.headers" :action="upload.fileUrl">
                   <Input style="width: 200px" class="myInput"></Input>
                   <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
@@ -182,6 +185,7 @@ export default {
       form: {},
       upload: {
         url: "http://47.93.2.82:9999/api/File/ImageUpload",
+        fileUrl: "http://47.93.2.82:9999/api/File/FileUpload",
         // headers: { 'Content-Type': 'multipart/form-data' }
         headers: {}
       },

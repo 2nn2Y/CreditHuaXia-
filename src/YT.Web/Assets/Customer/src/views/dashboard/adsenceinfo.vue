@@ -33,6 +33,9 @@ export default {
       return parseTime(time);
     }
   },
+  activated() {
+    this.Init();
+  },
   created() {
     this.Init();
   },
@@ -68,7 +71,7 @@ div {
   text-align: center;
   font-family: "Microsoft Yahei";
   font-size: 10px;
-  color: #b8b8b8
+  color: #b8b8b8;
 }
 
 .info {
@@ -85,8 +88,8 @@ div {
       padding: 40px 0 3px;
       font-size: 20px;
       color: #373d41;
-      border-bottom:2px solid #ddd;
-      margin-bottom: 5px
+      border-bottom: 2px solid #ddd;
+      margin-bottom: 5px;
     }
     .infosContent {
       padding-top: 20px;
