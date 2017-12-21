@@ -9,7 +9,7 @@
       </Row>
       <Row class='infosContent'>
         <Col span='24' class='g-center'>
-        <div v-html="info.content">大是大非</div>
+        <div v-html="info.content"></div>
         </Col>
       </Row>
       <BackTop> </BackTop>
