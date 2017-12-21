@@ -49,10 +49,12 @@
           </Row>
           <Row class='fileUpload'>
             <Row>
-              <Col span="6">
-              <h3>企业营业执照副本</h3>
+              <Col span="24">
+              <h3>企业营业执照副本：</h3>
               </Col>
-              <Col span="9">
+            </Row>
+            <Row>
+              <Col span="9" offset="5">
               <template class="demo-upload-list" v-if="form.license">
                 <img class="singleimg" :src="form.licenseUrl">
                 <div class="demo-upload-list-cover">
@@ -67,11 +69,13 @@
               <p class='g9b9ea0 g-center'>企业有效期营业执照复本电子版上传</p>
               </Col>
             </Row>
-            <Row>
+            <Row style="margin-top:20px">
               <Col span="6">
-              <h3>企业法人身份证</h3>
+              <h3>企业法人身份证：</h3>
               </Col>
-              <Col span="9">
+            </Row>
+            <Row>
+              <Col span="9" offset="5">
               <template class="demo-upload-list" v-if="form.topIdCard">
                 <img class="singleimg" :src="form.topIdCardUrl">
                 <div class="demo-upload-list-cover">
@@ -102,14 +106,16 @@
               <p class='g9b9ea0 g-center'>身份证反面</p>
               </Col>
             </Row>
-            <Row>
-              <Col span="12">
-              <h3>企业所属行业特有许可证或企业荣誉</h3>
+            <Row style="margin-top: 20px">
+              <Col span="24">
+              <h3>企业所属行业特有许可证或企业荣誉：</h3>
               </Col>
-              <Col span="12">
+            </Row>
+            <Row>
+              <Col span="12" offset="7">
               <Upload multiple type="drag" :show-upload-list="false" :on-error="Imageerror" :on-success="Imagesuccess"
               :headers="upload.headers" :action="upload.url">
-                <div style="padding: 10px 0">
+                <div style="padding: 10px -1px">
                   <Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
                 </div>
               </Upload>
@@ -127,10 +133,10 @@
           </Row>
           <Row class='fileUpload'>
             <Row>
-              <Col span="12">
-              <h3>相关业务资料</h3>
+              <Col span="4" offset="4">
+              <h3>相关业务资料：</h3>
               </Col>
-              <Col span="12">
+              <Col span="9">
               <Upload  type='drag' multiple  :show-upload-list="false"  :on-error="Fileerror" :on-success="Filesuccess" :headers="upload.headers" :action="upload.url">
                 <div class='fileBox'>
                   <Icon type='ios-plus-empty' size='38' style='color: #d3d3d3'></Icon>

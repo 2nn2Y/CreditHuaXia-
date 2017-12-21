@@ -1,11 +1,11 @@
 <template>
   <div class="order">
     <head-top-tag></head-top-tag>
-     <Row class='infoTitle'>
-        <Col span='18' ><p class='title'>订单信息</p></Col>
-        <Col span='6' ><div @click="exportData" class='export'>导出订单</div></Col>
-      </Row>
-       <hr style="height:5px;border:none;border-top:5px groove"/>
+    <Row class='infoTitle'>
+      <Col span='20'><p class='title'>订单</p></Col>
+      <Col span='4'><div @click="exportData" class='export'>导出订单</div></Col>
+    </Row>
+    <!-- <hr style="height:5px;border:none;border-top:5px groove"/> -->
     <div v-if="orders.length>0" class="orderMain">
       <div v-for="item in orders" :key="item.id">
         <Row class="orderTop">
@@ -41,10 +41,8 @@
               已取消
             </font>
           </span>
-
         </Row>
       </div>
-
       <Row>
         <Col :span="4">
         <p @click="prev"> 上一页</p>
@@ -193,22 +191,25 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 .infoTitle {
-  padding-top: 10px;
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 40px;
   padding-bottom: 10px;
   font-size: 20px;
+  border-bottom: 2px solid #ddd;
   color: #373d41;
   .title {
-    margin-left: 270px;
     text-align: center;
   }
   .export {
     width: 100px;
     height: 30px;
     line-height: 30px;
-    background-color: #2d8cf0;
+    background-color: #679fec;
     font-size: 14px;
     text-align: center;
-    margin-left: 50px;
+    float: right;
+    color: #fff
   }
 }
 
@@ -249,8 +250,9 @@ export default {
     }
     .orderCon {
       text-align: right;
-      padding-bottom: 24px;
-      border-bottom: 1px solid #c3c2c2;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #ededed;
+      margin-bottom:15px;
       .customer {
         display: inline-block;
         padding-right: 435px;

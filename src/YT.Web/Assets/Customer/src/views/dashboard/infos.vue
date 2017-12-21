@@ -4,19 +4,21 @@
       <BreadcrumbItem>公告通知</BreadcrumbItem>
     </Breadcrumb>
     <div class='g-mianBox'>
-      <Row @click.native="details(item)" class='g-bm' v-for='item in result' :key='item.id'>
-        <div class='g-width'>
-          <Col span='12' class='g-left'>
-          <span>{{item.title}}</span>
-          </Col>
-          <Col span='12' class='g-right'>
-          <span>{{item.creationTime | formatDate}}</span>
-          </Col>
-        </div>
-      </Row>
-      <Row v-if='result.length == 0' style='padding:50px 0'>
-        暂无相关产品
-      </Row>
+      <div class="g-infos">
+        <Row @click.native="details(item)" class='g-bm' v-for='item in result' :key='item.id'>
+          <div class='g-width'>
+            <Col span='12' class='g-left'>
+            <span style="color: #000">{{item.title}}</span>
+            </Col>
+            <Col span='12' class='g-right'>
+            <span style="color: #8c8c8c">{{item.creationTime | formatDate}}</span>
+            </Col>
+          </div>
+        </Row>
+        <Row v-if='result.length == 0' style='padding:50px 0'>
+          暂无相关产品
+        </Row>
+      </div>
     </div>
   </div>
 </template>
@@ -89,14 +91,20 @@ export default {
   }
   .g-mianBox {
     width: 100%;
-    padding: 0 10px;
+    padding: 40px;
     box-shadow: 0px 0px 7px 4px rgba(1, 34, 63, 0.1);
+    .g-infos{
+      border: 1px solid #ddd
+    }
     .g-bm {
       border-bottom: 1px solid #ebebeb;
-      padding: 10px 0;
+      padding: 15px;
       .g-rightFootTag {
         margin-top: 16px;
       }
+    }
+    .g-bm:last-child{
+      border-bottom: none
     }
   }
 }
