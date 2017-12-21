@@ -1,7 +1,7 @@
 <template>
-  <div class='info'>
+  <div class='Myinfo'>
     <head-top-tag></head-top-tag>
-    <div class='infoMain'>
+    <div class='MyinfoMain'>
       <Row class='infoTitle'>
         <Col span='24' class='g-center'>客户资料信息</Col>
       </Row>
@@ -386,9 +386,9 @@ div {
   text-align: center;
 }
 
-.info {
-  .infoMain {
-    background: #f5f5f6;
+.Myinfo {
+  .MyinfoMain {
+    // background: #f5f5f6;
     padding-bottom: 35px;
     overflow: auto;
     .ivu-form-item-required .ivu-form-item-label:before {
