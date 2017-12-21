@@ -153,7 +153,7 @@
             <Row v-if="files">
               <Col offset="12" span="12" :key="index" v-for="(item,index) in files"> {{item.profileName}}
               <a @click="remove(item)" >删除</a>
-              <a @click="download(item)" >下载</a>
+              <a :href="item.profileUrl" download="w3logo" >下载</a>
               </Col>
             </Row>
           </Row>
