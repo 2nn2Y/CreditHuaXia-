@@ -117,7 +117,7 @@
                     <Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
                   </div>
                 </Upload> -->
-                <Upload action="//jsonplaceholder.typicode.com/posts/">
+                <Upload multiple :show-upload-list="false" :headers="upload.headers" :on-error="Imageerror" :on-success="Imagesuccess" :action="upload.url">
                     <Input style="width: 200px" class="myInput"></Input>
                     <Button type="ghost" class="myBtn">上传文件</Button>
                 </Upload>
@@ -144,7 +144,7 @@
                   <Icon type='ios-plus-empty' size='38' style='color: #d3d3d3'></Icon>
                 </div>
               </Upload> -->
-              <Upload action="//jsonplaceholder.typicode.com/posts/">
+              <Upload   multiple  :show-upload-list="false"  :on-error="Fileerror" :on-success="Filesuccess" :headers="upload.headers" :action="upload.url">
                   <Input style="width: 200px" class="myInput"></Input>
                   <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
@@ -470,11 +470,11 @@ div {
         margin: 0 143px 0 36px;
       }
     }
-    .myInput input{
+    .myInput input {
       border-radius: 0;
-      border-right: none
+      border-right: none;
     }
-    .myBtn{
+    .myBtn {
       border-radius: 0;
       margin-left: -3px;
       background: #4e5873;
