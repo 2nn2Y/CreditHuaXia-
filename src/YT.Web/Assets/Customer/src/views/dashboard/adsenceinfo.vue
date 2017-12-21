@@ -4,7 +4,6 @@
       <Row class='infosTitle'>
         <Col span='24' class='g-center'>{{info.title}}</Col>
       </Row>
-      <!-- <hr style="height:5px;border:none;border-top:5px groove"/> -->
       <Row>
         <Col span='24' class='g-time'>{{info.creationTime| formatDate}}</Col>
       </Row>

@@ -5,7 +5,6 @@
       <Col span='20'><p class='title'>订单</p></Col>
       <Col span='4'><div @click="exportData" class='export'>导出订单</div></Col>
     </Row>
-    <!-- <hr style="height:5px;border:none;border-top:5px groove"/> -->
     <div v-if="orders.length>0" class="orderMain">
       <div v-for="item in orders" :key="item.id">
         <Row class="orderTop">

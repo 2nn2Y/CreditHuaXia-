@@ -3,7 +3,7 @@
     <Breadcrumb class='breadHead'>
       <BreadcrumbItem>公告通知</BreadcrumbItem>
     </Breadcrumb>
-    <div class='g-mianBox'>
+    <div class='g-infoBox'>
       <div class="g-infos">
         <Row @click.native="details(item)" class='g-bm' v-for='item in result' :key='item.id'>
           <div class='g-width'>
@@ -89,7 +89,7 @@ export default {
     border-left: 2px solid #8eb7ef;
     padding-left: 10px;
   }
-  .g-mianBox {
+  .g-infoBox {
     width: 100%;
     padding: 40px;
     box-shadow: 0px 0px 7px 4px rgba(1, 34, 63, 0.1);
