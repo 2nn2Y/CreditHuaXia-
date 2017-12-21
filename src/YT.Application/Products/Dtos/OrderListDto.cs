@@ -52,6 +52,10 @@ namespace YT.Products.Dtos
         /// </summary>
         public bool? State { get; set; }
         /// <summary>
+        /// 支付状态
+        /// </summary>
+        public bool PayState { get; set; }
+        /// <summary>
         /// 产品id
         /// </summary>
         public int ProductId { get; set; }

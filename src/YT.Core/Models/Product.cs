@@ -103,6 +103,10 @@ namespace YT.Models
         /// </summary>
         public double TotalPrice { get; set; }
         /// <summary>
+        /// 支付状态
+        /// </summary>
+        public bool PayState { get; set; }
+        /// <summary>
         /// 单价
         /// </summary>
         public double Price { get; set; }

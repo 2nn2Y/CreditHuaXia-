@@ -102,7 +102,7 @@ namespace YT.Dashboards
                               Id = o.Id,
                               Cate = o.LevelTwo,
                               Count = o.Count,
-                              CustomerName =o.Form!=null? o.Form.CompanyName:"",
+                              CustomerName = o.Form != null ? o.Form.CompanyName : "",
                               FormId = o.FormId,
                               Price = o.Price,
                               ProductName = o.ProductName,
@@ -197,6 +197,19 @@ namespace YT.Dashboards
             customer.Balance += order.TotalPrice;
 
         }
+
+        /// <summary>
+        /// 完成订单
+        /// </summary>
+        /// <param name="inputDto"></param>
+        /// <returns></returns>
+        public async Task CompleteOrder(EntityDto<int> inputDto)
+        {
+            var order = await _ordeRepository.FirstOrDefaultAsync(inputDto.Id);
+            if (order == null) throw new UserFriendlyException("该订单不存在");
+            if (!order.PayState) throw new UserFriendlyException("该订单未支付");
+            order.State = true;
+        }
         /// <summary>
         /// 创建订单扩展信息
         /// </summary>
@@ -215,7 +228,7 @@ namespace YT.Dashboards
                 await _profileRepository.DeleteAsync(c => c.FormId == form.Id);
             }
             await _formRepository.InsertOrUpdateAsync(form);
-            if (!order.State.HasValue)
+            if (!order.PayState)
             {
                 if (customer.Balance < order.TotalPrice)
                 {
@@ -230,7 +243,7 @@ namespace YT.Dashboards
                 cost.Cost = order.TotalPrice;
                 cost.CurrentBalance = customer.Balance;
                 await _costRepository.InsertAsync(cost);
-                order.State = true;
+                order.PayState = true;
             }
             await CurrentUnitOfWork.SaveChangesAsync();
             order.FormId = form.Id;
@@ -449,7 +462,7 @@ namespace YT.Dashboards
             {
                 CustomerId = input.CustomerId,
                 OrderNum = Guid.NewGuid().ToString("N"),
-                State = null,
+                State = null,PayState = false,
                 Count = input.Count,
                 TotalPrice = totalPrice,
                 ProductId = product.Id,
@@ -461,7 +474,6 @@ namespace YT.Dashboards
             };
             if (!product.RequireForm)
             {
-                dto.State = true;
                 var cost = new CustomerCost()
                 {
                     Balance = customer.Balance,
@@ -472,6 +484,7 @@ namespace YT.Dashboards
                 cost.CurrentBalance = customer.Balance;
                 await _costRepository.InsertAsync(cost);
             }
+            dto.PayState = true;
             dto = await _ordeRepository.InsertAsync(dto);
             await CurrentUnitOfWork.SaveChangesAsync();
             return dto.MapTo<OrderListDto>();
