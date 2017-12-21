@@ -107,19 +107,21 @@
               </Col>
             </Row>
             <Row style="margin-top: 20px">
-              <Col span="24">
+              <Col span="9">
               <h3>企业所属行业特有许可证或企业荣誉：</h3>
               </Col>
-            </Row>
-            <Row>
-              <Col span="12" offset="7">
-              <Upload multiple type="drag" :show-upload-list="false" :on-error="Imageerror" :on-success="Imagesuccess"
-              :headers="upload.headers" :action="upload.url">
-                <div style="padding: 10px -1px">
-                  <Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
-                </div>
-              </Upload>
-              </Col>
+              <Col span="13" offset="1">
+                <!-- <Upload multiple type="drag" :show-upload-list="false" :on-error="Imageerror" :on-success="Imagesuccess"
+                :headers="upload.headers" :action="upload.url">
+                  <div style="padding: 10px -1px">
+                    <Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
+                  </div>
+                </Upload> -->
+                <Upload action="//jsonplaceholder.typicode.com/posts/">
+                    <Input style="width: 200px" class="myInput"></Input>
+                    <Button type="ghost" class="myBtn">上传文件</Button>
+                </Upload>
+              </col>
             </Row>
             <Row v-if="images">
               <enlargeimg @remove="childRemove" :data="images"></enlargeimg>
@@ -136,11 +138,15 @@
               <Col span="4" offset="4">
               <h3>相关业务资料：</h3>
               </Col>
-              <Col span="9">
-              <Upload  type='drag' multiple  :show-upload-list="false"  :on-error="Fileerror" :on-success="Filesuccess" :headers="upload.headers" :action="upload.url">
+              <Col span="11" offset="2">
+              <!-- <Upload  type='drag' multiple  :show-upload-list="false"  :on-error="Fileerror" :on-success="Filesuccess" :headers="upload.headers" :action="upload.url">
                 <div class='fileBox'>
                   <Icon type='ios-plus-empty' size='38' style='color: #d3d3d3'></Icon>
                 </div>
+              </Upload> -->
+              <Upload action="//jsonplaceholder.typicode.com/posts/">
+                  <Input style="width: 200px" class="myInput"></Input>
+                  <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </Col>
             </Row>
@@ -463,6 +469,17 @@ div {
       .g-marginLeft {
         margin: 0 143px 0 36px;
       }
+    }
+    .myInput input{
+      border-radius: 0;
+      border-right: none
+    }
+    .myBtn{
+      border-radius: 0;
+      margin-left: -3px;
+      background: #4e5873;
+      color: #fff;
+      padding: 8px 15px;
     }
   }
 }
