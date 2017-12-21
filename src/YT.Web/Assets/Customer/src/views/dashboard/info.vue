@@ -161,7 +161,6 @@
             </Row>
           </Row>
         </div>
-
         <Row class="g-center submitButton">
           <Button @click="submit" type="primary">提交并结算</Button>
         </Row>
