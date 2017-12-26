@@ -112,7 +112,7 @@
                         <Row style="margin-top:45px">
                             <Col span="9">
                             <template class="demo-upload-list" v-if="form.bottomIdCard">
-                                <a :href="form.bottomIdCardUrl" download="img">
+                                <a :href="form.bottomIdCardUrl" download="w3logo">
                                 </a>
                                 <img style="width:200px;height:150px;" :src="form.bottomIdCardUrl">
                             </template>
@@ -120,7 +120,7 @@
                             </Col>
                             <Col span="9" offset="6">
                             <template class="demo-upload-list" v-if="form.topIdCard">
-                                <a :href="form.topIdCardUrl" download="img">
+                                <a :href="form.topIdCardUrl" download="w3logo">
                                     <img style="width:200px;height:150px;" :src="form.topIdCardUrl">
                                 </a>
                             </template>
@@ -134,7 +134,7 @@
                             <Row >
                                 <Col :key="index" v-for="(item,index) in type1" :span="6">
                                 <template class="demo-upload-list" v-if="item.profileUrl">
-                                    <a :href="item.profileUrl" download="img">
+                                    <a :href="item.profileUrl" download="w3logo">
                                         <img style="width:200px;height:150px;" :src="item.profileUrl">
                                     </a>
                                 </template>
@@ -150,9 +150,7 @@
                             <Row >
                                 <Col :key="index" v-for="(item,index) in type2" :span="6">
                                 <template class="demo-upload-list" v-if="item.profileUrl">
-                                    <a :href="item.profileUrl" download="img">
-                                        <img style="width:200px;height:150px;" :src="item.profileUrl">
-                                    </a>
+                                    <a download="w3logo" :href="item.profileUrl">下载</a>
                                 </template>
                                 </Col>
                             </Row>
@@ -187,14 +185,14 @@ export default {
     type1() {
       if (this.form.formProfiles) {
         return this.form.formProfiles.filter(function(x) {
-          return x.profileType == 1;
+          return x.profileType == 2;
         });
       } else return null;
     },
     type2() {
       if (this.form.formProfiles) {
         return this.form.formProfiles.filter(function(x) {
-          return x.profileType == 2;
+          return x.profileType == 1;
         });
       } else return null;
     }
