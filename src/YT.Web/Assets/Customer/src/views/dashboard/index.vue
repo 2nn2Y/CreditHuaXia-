@@ -79,20 +79,26 @@ export default {
       });
     },
     submit(item) {
-      const param = {
-        customerId: localStorage.getItem("Credit-Id"),
-        productId: item.id,
-        count: item.count
-      };
-      createOrder(param).then(r => {
-        if (r.data.success) {
-          const id = r.data.result.id;
-          this.$Message.success("预定成功");
-          if (item.requireForm) {
-            this.$router.push({ path: "/info", query: { orderId: id } });
-          } else {
-            this.$router.push({ path: "/order" });
-          }
+      this.$Modal.confirm({
+        title: "购买确认",
+        content: "确定要购买当前商品么?",
+        onOk: () => {
+          const param = {
+            customerId: localStorage.getItem("Credit-Id"),
+            productId: item.id,
+            count: item.count
+          };
+          createOrder(param).then(r => {
+            if (r.data.success) {
+              const id = r.data.result.id;
+              this.$Message.success("预定成功");
+              if (item.requireForm) {
+                this.$router.push({ path: "/info", query: { orderId: id } });
+              } else {
+                this.$router.push({ path: "/order" });
+              }
+            }
+          });
         }
       });
     }
