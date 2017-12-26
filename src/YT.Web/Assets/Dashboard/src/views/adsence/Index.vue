@@ -66,8 +66,28 @@ export default {
           key: "action",
           align: "center",
           render: (h, params) => {
+            var divs = [];
+            var del = h(
+              "Button",
+              {
+                props: {
+                  type: "error",
+                  size: "small"
+                },
+                style: {
+                  marginRight: "5px"
+                },
+                on: {
+                  click: () => {
+                    this.delete(params.row);
+                  }
+                }
+              },
+              "删除"
+            );
+            divs.push(del);
             if (!params.row.isActive) {
-              return h("div", [
+              divs.push(
                 h(
                   "Button",
                   {
@@ -85,25 +105,9 @@ export default {
                     }
                   },
                   "编辑"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "error",
-                      size: "small"
-                    },
-                    style: {
-                      marginRight: "5px"
-                    },
-                    on: {
-                      click: () => {
-                        this.delete(params.row);
-                      }
-                    }
-                  },
-                  "删除"
-                ),
+                )
+              );
+              divs.push(
                 h(
                   "Button",
                   {
@@ -119,8 +123,9 @@ export default {
                   },
                   "发布"
                 )
-              ]);
+              );
             }
+            return h("div", divs);
           }
         }
       ],

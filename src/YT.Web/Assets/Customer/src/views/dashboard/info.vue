@@ -53,7 +53,7 @@
               <h3>企业营业执照副本</h3>
               </Col>
               <Col span="13" offset="1">
-              <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Licenseerror" :on-success="Licensesuccess" :action="upload.url">
+              <Upload :disabled="licences.length!=1" :show-upload-list="false" :headers="upload.headers" :on-error="Licenseerror" :on-success="Licensesuccess" :action="upload.url">
                 <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </col>
@@ -66,7 +66,7 @@
               <h3>企业法人身份证正面</h3>
               </Col>
               <Col span="13" offset="1">
-              <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Toperror" :on-success="Topsuccess" :action="upload.url">
+              <Upload :disabled="uface.length!=1" :show-upload-list="false" :headers="upload.headers" :on-error="Toperror" :on-success="Topsuccess" :action="upload.url">
                 <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </Col>
@@ -80,11 +80,10 @@
               <h3>企业法人身份证背面</h3>
               </Col>
               <Col span="13" offset="1">
-              <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Bottomerror" :on-success="Bottomsuccess" :action="upload.url">
+              <Upload :disabled="dface.length!=1" :show-upload-list="false" :headers="upload.headers" :on-error="Bottomerror" :on-success="Bottomsuccess" :action="upload.url">
                 <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </Col>
-
             </Row>
             <Row v-if="dface">
               <enlargeimg @remove="childRemove" :data="dface"></enlargeimg>
@@ -259,6 +258,36 @@ export default {
             this.form = r.data.result;
             this.form.orderId = this.$route.query.id;
             this.form.customerId = localStorage.getItem("Credit-Id");
+            if (this.form.formProfiles == null) {
+              this.form.formProfiles = [];
+            }
+            if (this.form.bottomIdCard) {
+              const model = {
+                profileId: this.form.bottomIdCard,
+                profileUrl: this.form.bottomIdCardUrl,
+                profileName: "",
+                profileType: 5
+              };
+              this.form.formProfiles.push(model);
+            }
+            if (this.form.topIdCard) {
+              const model = {
+                profileId: this.form.topIdCard,
+                profileUrl: this.form.topIdCardUrl,
+                profileName: "",
+                profileType: 4
+              };
+              this.form.formProfiles.push(model);
+            }
+            if (this.form.license) {
+              const model = {
+                profileId: this.form.license,
+                profileUrl: this.form.licenseUrl,
+                profileName: "",
+                profileType: 3
+              };
+              this.form.formProfiles.push(model);
+            }
           }
         })
         .catch(e => {
@@ -269,14 +298,18 @@ export default {
       this.form.orderId = this.$route.query.orderId;
       // 图片同步
       const licences = this.form.formProfiles.filter(c => c.profileType === 3);
-      this.form.license = licences != null ? licences[0].profileId : null;
+      this.form.license =
+        licences != null && licences.length > 0 ? licences[0].profileId : null;
       const topface = this.form.formProfiles.filter(c => c.profileType === 4);
-      this.form.topIdCard = topface != null ? topface[0].profileId : null;
+      this.form.topIdCard =
+        topface != null && topface.length > 0 ? topface[0].profileId : null;
       const bottomface = this.form.formProfiles.filter(
         c => c.profileType === 5
       );
       this.form.bottomIdCard =
-        bottomface != null ? bottomface[0].profileId : null;
+        bottomface != null && bottomface.length > 0
+          ? bottomface[0].profileId
+          : null;
       this.form.formProfiles = this.form.formProfiles.filter(
         c => c.profileType === 1 || c.profileType === 2
       );
