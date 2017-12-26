@@ -45,7 +45,13 @@
 </template>
 
 <script>
-import { orders, order, payBack, exportOrder } from "api/products";
+import {
+  orders,
+  order,
+  payBack,
+  exportOrder,
+  completeOrder
+} from "api/products";
 export default {
   name: "account",
   data() {
@@ -114,7 +120,24 @@ export default {
                 "查看"
               )
             );
-            if (params.row.state) {
+            if (params.row.state == null) {
+              childs.push(
+                h(
+                  "Button",
+                  {
+                    props: {
+                      type: "primary",
+                      size: "small"
+                    },
+                    on: {
+                      click: () => {
+                        this.complete(params.row);
+                      }
+                    }
+                  },
+                  "完成"
+                )
+              );
               childs.push(
                 h(
                   "Button",
@@ -164,7 +187,7 @@ export default {
     this.$root.eventHub.$off("order");
   },
   methods: {
-    // 完成
+    // 退款
     payback(model) {
       var table = this.$refs.list;
       this.$Modal.confirm({
@@ -173,6 +196,26 @@ export default {
         onOk: () => {
           const parms = { id: model.id };
           payBack(parms)
+            .then(c => {
+              if (c.data.success) {
+                table.initData();
+              }
+            })
+            .catch(e => {
+              this.$Message.error(e.response.data.error.message);
+            });
+        }
+      });
+    },
+    // 完成
+    complete(model) {
+      var table = this.$refs.list;
+      this.$Modal.confirm({
+        title: "操作提示",
+        content: "确定要完成订单么?",
+        onOk: () => {
+          const parms = { id: model.id };
+          completeOrder(parms)
             .then(c => {
               if (c.data.success) {
                 table.initData();

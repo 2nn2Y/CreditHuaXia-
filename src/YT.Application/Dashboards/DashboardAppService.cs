@@ -207,7 +207,6 @@ namespace YT.Dashboards
         {
             var order = await _ordeRepository.FirstOrDefaultAsync(inputDto.Id);
             if (order == null) throw new UserFriendlyException("该订单不存在");
-            if (!order.PayState) throw new UserFriendlyException("该订单未支付");
             order.State = true;
         }
         /// <summary>
@@ -483,8 +482,8 @@ namespace YT.Dashboards
                 cost.Cost = dto.TotalPrice;
                 cost.CurrentBalance = customer.Balance;
                 await _costRepository.InsertAsync(cost);
+                dto.PayState = true;
             }
-            dto.PayState = true;
             dto = await _ordeRepository.InsertAsync(dto);
             await CurrentUnitOfWork.SaveChangesAsync();
             return dto.MapTo<OrderListDto>();

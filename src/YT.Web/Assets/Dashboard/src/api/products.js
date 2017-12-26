@@ -111,3 +111,10 @@ export function payBack(data) {
         data
     });
 }
+export function completeOrder(data) {
+    return fetch({
+        url: '/api/services/app/dashboard/CompleteOrder',
+        method: 'post',
+        data
+    });
+}

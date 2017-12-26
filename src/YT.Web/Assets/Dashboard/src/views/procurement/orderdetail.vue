@@ -132,7 +132,7 @@
                             </Col>
                             <Col span="12">
                             <Row >
-                                <Col v-for="(item,index) in type1" :span="6">
+                                <Col :key="index" v-for="(item,index) in type1" :span="6">
                                 <template class="demo-upload-list" v-if="item.profileUrl">
                                     <a :href="item.profileUrl" download="img">
                                         <img style="width:200px;height:150px;" :src="item.profileUrl">
@@ -148,7 +148,7 @@
                             </Col>
                             <Col span="12">
                             <Row >
-                                <Col v-for="(item,index) in type2" :span="6">
+                                <Col :key="index" v-for="(item,index) in type2" :span="6">
                                 <template class="demo-upload-list" v-if="item.profileUrl">
                                     <a :href="item.profileUrl" download="img">
                                         <img style="width:200px;height:150px;" :src="item.profileUrl">
