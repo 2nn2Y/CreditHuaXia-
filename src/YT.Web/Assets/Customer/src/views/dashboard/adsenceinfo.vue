@@ -9,7 +9,7 @@
       </Row>
       <Row class='infosContent'>
         <Col span='24' >
-        <div v-html="info.content"></div>
+        <div style="text-indent:25px" v-html="info.content"></div>
         </Col>
       </Row>
       <BackTop> </BackTop>
