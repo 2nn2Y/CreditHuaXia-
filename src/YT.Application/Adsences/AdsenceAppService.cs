@@ -50,7 +50,8 @@ namespace YT.Adsences
         {
 
             var query = AdsenceRepositoryAsNoTrack;
-            query = query.WhereIf(!input.Filter.IsNullOrWhiteSpace(), c => c.Title.Contains(input.Filter));
+            query = query.WhereIf(!input.Filter.IsNullOrWhiteSpace(), c => c.Title.Contains(input.Filter))
+                .WhereIf(input.IsActive.HasValue, c=>c.IsActive==input.IsActive.Value);
 
             var adsenceCount = await query.CountAsync();
 

@@ -14,7 +14,10 @@ namespace YT.Adsences.Dtos
 	    /// 模糊查询参数
 		/// </summary>
 		public string Filter { get; set; }
-
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public bool? IsActive { get; set; }
 		/// <summary>
 	    /// 用于排序的默认值
 		/// </summary>

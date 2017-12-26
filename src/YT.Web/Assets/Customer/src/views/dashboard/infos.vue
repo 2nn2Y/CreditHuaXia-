@@ -32,6 +32,7 @@ export default {
       result: [],
       params: {
         filter: "",
+        isActive: true,
         maxResultCount: 10,
         skipCount: 0
       }
@@ -93,8 +94,8 @@ export default {
     width: 100%;
     padding: 40px;
     box-shadow: 0px 0px 7px 4px rgba(1, 34, 63, 0.1);
-    .g-infos{
-      border: 1px solid #ddd
+    .g-infos {
+      border: 1px solid #ddd;
     }
     .g-bm {
       border-bottom: 1px solid #ebebeb;
@@ -103,8 +104,8 @@ export default {
         margin-top: 16px;
       }
     }
-    .g-bm:last-child{
-      border-bottom: none
+    .g-bm:last-child {
+      border-bottom: none;
     }
   }
 }

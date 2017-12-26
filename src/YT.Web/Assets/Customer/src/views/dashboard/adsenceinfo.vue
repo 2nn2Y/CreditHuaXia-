@@ -8,7 +8,7 @@
         <Col span='24' class='g-time'>{{info.creationTime| formatDate}}</Col>
       </Row>
       <Row class='infosContent'>
-        <Col span='24' class='g-center'>
+        <Col span='24' >
         <div v-html="info.content"></div>
         </Col>
       </Row>
