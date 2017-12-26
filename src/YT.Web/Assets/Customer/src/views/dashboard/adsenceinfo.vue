@@ -94,7 +94,7 @@ div {
     .infosContent {
       padding-top: 20px;
       font-size: 14px;
-      color: #b3b3b3;
+      color: #0e0e0e;
     }
   }
 }
