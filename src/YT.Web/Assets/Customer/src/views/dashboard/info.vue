@@ -48,63 +48,49 @@
             <Col span='24'>资料上传</Col>
           </Row>
           <Row class='fileUpload'>
-            <Row>
-              <Col span="24">
-              <h3>企业营业执照副本：</h3>
-              </Col>
-            </Row>
-            <Row>
-              <Col span="9" offset="5">
-              <template class="demo-upload-list" v-if="form.license">
-                <img class="singleimg" :src="form.licenseUrl">
-                <div class="demo-upload-list-cover">
-                  <Icon type="ios-trash-outline" @click.native="removeLicense(form.license)"></Icon>
-                </div>
-              </template>
-              <Upload v-else type='drag' :on-error="licenseerror" :on-success="licensesuccess" :headers="upload.headers" :action="upload.url">
-                <div class='fileBox'>
-                  <Icon type='ios-plus-empty' size='38' style='color: #d3d3d3'></Icon>
-                </div>
-              </Upload>
-              <p class='g9b9ea0 g-center'>企业有效期营业执照复本电子版上传</p>
-              </Col>
-            </Row>
-            <Row style="margin-top:20px">
-              <Col span="6">
-              <h3>企业法人身份证：</h3>
-              </Col>
-            </Row>
-            <Row>
-              <Col span="9" offset="5">
-              <template class="demo-upload-list" v-if="form.topIdCard">
-                <img class="singleimg" :src="form.topIdCardUrl">
-                <div class="demo-upload-list-cover">
-                  <Icon type="ios-trash-outline" @click.native="removeTop(form.topIdCard)"></Icon>
-                </div>
-              </template>
-              <Upload v-else type='drag' :on-error="Toperror" :on-success="Topsuccess" :headers="upload.headers" :action="upload.url">
-                <div class='fileBox'>
-                  <Icon type='ios-plus-empty' size='38' style='color: #d3d3d3'></Icon>
-                </div>
-              </Upload>
-              <p class='g9b9ea0 g-center'>身份证正面</p>
-              </Col>
+            <Row style="margin-top: 20px">
               <Col span="9">
-              <template class="demo-upload-list" v-if="form.bottomIdCard">
-                <img class="singleimg" :src="form.bottomIdCardUrl">
-                <div class="demo-upload-list-cover">
-                  <Icon type="ios-trash-outline" @click.native="removeBottom(form.bottomIdCard)"></Icon>
-                </div>
-              </template>
-              <Upload v-else type='drag' :on-error="Bottomerror"
-               :on-success="Bottomsuccess"
-                :headers="upload.headers" :action="upload.url">
-                <div class='fileBox'>
-                  <Icon type='ios-plus-empty' size='38' style='color: #d3d3d3'></Icon>
-                </div>
-              </Upload>
-              <p class='g9b9ea0 g-center'>身份证反面</p>
+              <h3>企业营业执照副本</h3>
               </Col>
+              <Col span="13" offset="1">
+              <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Licenseerror" :on-success="Licensesuccess" :action="upload.url">
+                <Input style="width: 200px" class="myInput"></Input>
+                <Button type="ghost" class="myBtn">上传文件</Button>
+              </Upload>
+              </col>
+            </Row>
+            <Row v-if="licences">
+              <enlargeimg @remove="childRemove" :data="licences"></enlargeimg>
+            </Row>
+            <Row style="margin-top: 20px">
+              <Col span="9">
+              <h3>企业法人身份证正面</h3>
+              </Col>
+              <Col span="13" offset="1">
+              <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Toperror" :on-success="Topsuccess" :action="upload.url">
+                <Input style="width: 200px" class="myInput"></Input>
+                <Button type="ghost" class="myBtn">上传文件</Button>
+              </Upload>
+              </Col>
+
+            </Row>
+            <Row v-if="uface">
+              <enlargeimg @remove="childRemove" :data="uface"></enlargeimg>
+            </Row>
+            <Row style="margin-top: 20px">
+              <Col span="9">
+              <h3>企业法人身份证背面</h3>
+              </Col>
+              <Col span="13" offset="1">
+              <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Bottomerror" :on-success="Bottomsuccess" :action="upload.url">
+                <Input style="width: 200px" class="myInput"></Input>
+                <Button type="ghost" class="myBtn">上传文件</Button>
+              </Upload>
+              </Col>
+
+            </Row>
+            <Row v-if="dface">
+              <enlargeimg @remove="childRemove" :data="dface"></enlargeimg>
             </Row>
 
             <Row style="margin-top: 20px">
@@ -112,16 +98,10 @@
               <h3>企业所属行业特有许可证或企业荣誉：</h3>
               </Col>
               <Col span="13" offset="1">
-                <!-- <Upload multiple type="drag" :show-upload-list="false" :on-error="Imageerror" :on-success="Imagesuccess"
-                :headers="upload.headers" :action="upload.url">
-                  <div style="padding: 10px -1px">
-                    <Icon type="ios-cloud-upload" size="32" style="color: #3399ff"></Icon>
-                  </div>
-                </Upload> -->
-                <Upload multiple :show-upload-list="false" :headers="upload.headers" :on-error="Imageerror" :on-success="Imagesuccess" :action="upload.url">
-                    <Input style="width: 200px" class="myInput"></Input>
-                    <Button type="ghost" class="myBtn">上传文件</Button>
-                </Upload>
+              <Upload multiple :show-upload-list="false" :headers="upload.headers" :on-error="Imageerror" :on-success="Imagesuccess" :action="upload.url">
+                <Input style="width: 200px" class="myInput"></Input>
+                <Button type="ghost" class="myBtn">上传文件</Button>
+              </Upload>
               </col>
             </Row>
             <Row v-if="images">
@@ -140,23 +120,16 @@
               <h3>相关业务资料：</h3>
               </Col>
               <Col span="11" offset="2">
-              <!-- <Upload  type='drag' multiple  :show-upload-list="false"  :on-error="Fileerror" :on-success="Filesuccess" :headers="upload.headers" :action="upload.url">
-                <div class='fileBox'>
-                  <Icon type='ios-plus-empty' size='38' style='color: #d3d3d3'></Icon>
-                </div>
-              </Upload> -->
-              <Upload   multiple  :show-upload-list="false"
-               :on-error="Fileerror" :on-success="Filesuccess"
-               :headers="upload.headers" :action="upload.fileUrl">
-                  <Input style="width: 200px" class="myInput"></Input>
-                  <Button type="ghost" class="myBtn">上传文件</Button>
+              <Upload multiple :show-upload-list="false" :on-error="Fileerror" :on-success="Filesuccess" :headers="upload.headers" :action="upload.fileUrl">
+                <Input style="width: 200px" class="myInput"></Input>
+                <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </Col>
             </Row>
             <Row v-if="files">
               <Col offset="12" span="12" :key="index" v-for="(item,index) in files"> {{item.profileName}}
-              <a @click="remove(item)" >删除</a>
-              <a :href="item.profileUrl" download="w3logo" >下载</a>
+              <a @click="remove(item)">删除</a>
+              <a :href="item.profileUrl" download="w3logo">下载</a>
               </Col>
             </Row>
           </Row>
@@ -218,6 +191,34 @@ export default {
     this.Init();
   },
   computed: {
+    licences() {
+      if (this.form.formProfiles != null) {
+        return this.form.formProfiles.filter(c => {
+          return c.profileType === 3;
+        });
+      } else {
+        return [];
+      }
+    },
+    uface() {
+      if (this.form.formProfiles != null) {
+        return this.form.formProfiles.filter(c => {
+          return c.profileType === 4;
+        });
+      } else {
+        return [];
+      }
+    },
+    dface() {
+      if (this.form.formProfiles != null) {
+        return this.form.formProfiles.filter(c => {
+          return c.profileType === 5;
+        });
+      } else {
+        return [];
+      }
+    },
+
     files() {
       if (this.form.formProfiles != null) {
         return this.form.formProfiles.filter(c => {
@@ -270,6 +271,19 @@ export default {
     },
     submit() {
       this.form.orderId = this.$route.query.orderId;
+      // 图片同步
+      const licences = this.form.formProfiles.filter(c => c.profileType === 3);
+      this.form.license = licences != null ? licences[0].profileId : null;
+      const topface = this.form.formProfiles.filter(c => c.profileType === 4);
+      this.form.topIdCard = topface != null ? topface[0].profileId : null;
+      const bottomface = this.form.formProfiles.filter(
+        c => c.profileType === 5
+      );
+      this.form.bottomIdCard =
+        bottomface != null ? bottomface[0].profileId : null;
+      this.form.formProfiles = this.form.formProfiles.filter(
+        c => c.profileType === 1 || c.profileType === 2
+      );
       modifyForm(this.form).then(r => {
         if (r.data.success) {
           this.$router.push({
@@ -278,32 +292,27 @@ export default {
         }
       });
     },
-    removeLicense(guid) {
-      this.form.license = "";
-      this.form.licenseUrl = "";
-    },
-    removeTop(guid) {
-      this.form.topIdCard = "";
-      this.form.topIdCardUrl = "";
-    },
-    removeBottom(guid) {
-      this.form.bottomIdCard = "";
-      this.form.bottomIdCardUrl = "";
-    },
-    removeOther(guid) {
-      this.form.companyLogo = "";
-      this.form.companyLogoUrl = "";
-    },
 
-    licenseerror(error, file) {
+    Licenseerror(error, file) {
       if (!file.success) {
         this.$Message.error(file.error.message);
       }
     },
-    licensesuccess(response, file) {
+    Licensesuccess(response, file) {
       if (response.success) {
-        this.form.license = response.result[0].guid;
-        this.form.licenseUrl = response.result[0].viewUrl;
+        if (
+          this.form.formProfiles == null ||
+          this.form.formProfiles.length <= 0
+        ) {
+          this.form.formProfiles = [];
+        }
+        const model = {
+          profileId: response.result[0].guid,
+          profileUrl: response.result[0].viewUrl,
+          profileName: response.result[0].name,
+          profileType: 3
+        };
+        this.form.formProfiles.push(model);
       }
     },
     Toperror(error, file) {
@@ -313,8 +322,19 @@ export default {
     },
     Topsuccess(response, file) {
       if (response.success) {
-        this.form.topIdCard = response.result[0].guid;
-        this.form.topIdCardUrl = response.result[0].viewUrl;
+        if (
+          this.form.formProfiles == null ||
+          this.form.formProfiles.length <= 0
+        ) {
+          this.form.formProfiles = [];
+        }
+        const model = {
+          profileId: response.result[0].guid,
+          profileUrl: response.result[0].viewUrl,
+          profileName: response.result[0].name,
+          profileType: 4
+        };
+        this.form.formProfiles.push(model);
       }
     },
     Bottomerror(error, file) {
@@ -324,16 +344,22 @@ export default {
     },
     Bottomsuccess(response, file) {
       if (response.success) {
-        this.form.bottomIdCard = response.result[0].guid;
-        this.form.bottomIdCardUrl = response.result[0].viewUrl;
+        if (
+          this.form.formProfiles == null ||
+          this.form.formProfiles.length <= 0
+        ) {
+          this.form.formProfiles = [];
+        }
+        const model = {
+          profileId: response.result[0].guid,
+          profileUrl: response.result[0].viewUrl,
+          profileName: response.result[0].name,
+          profileType: 5
+        };
+        this.form.formProfiles.push(model);
       }
     },
     Fileerror(error, file) {
-      if (!file.success) {
-        this.$Message.error(file.error.message);
-      }
-    },
-    Imageerror(error, file) {
       if (!file.success) {
         this.$Message.error(file.error.message);
       }
@@ -353,6 +379,11 @@ export default {
           profileType: 1
         };
         this.form.formProfiles.push(model);
+      }
+    },
+    Imageerror(error, file) {
+      if (!file.success) {
+        this.$Message.error(file.error.message);
       }
     },
     Imagesuccess(response, file) {

@@ -383,7 +383,7 @@ namespace YT.Dashboards
                     OrderNum = o.OrderNum,
                     CreationTime = o.CreationTime,
                     State = o.State,
-                    ProductId = o.Id,
+                    ProductId = o.ProductId,
                     RequireForm = p?.RequireForm
                 };
                 if (o.Profile.HasValue)
