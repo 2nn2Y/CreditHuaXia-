@@ -54,7 +54,6 @@
               </Col>
               <Col span="13" offset="1">
               <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Licenseerror" :on-success="Licensesuccess" :action="upload.url">
-                <Input style="width: 200px" class="myInput"></Input>
                 <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </col>
@@ -68,7 +67,6 @@
               </Col>
               <Col span="13" offset="1">
               <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Toperror" :on-success="Topsuccess" :action="upload.url">
-                <Input style="width: 200px" class="myInput"></Input>
                 <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </Col>
@@ -83,7 +81,6 @@
               </Col>
               <Col span="13" offset="1">
               <Upload :show-upload-list="false" :headers="upload.headers" :on-error="Bottomerror" :on-success="Bottomsuccess" :action="upload.url">
-                <Input style="width: 200px" class="myInput"></Input>
                 <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </Col>
@@ -99,7 +96,6 @@
               </Col>
               <Col span="13" offset="1">
               <Upload multiple :show-upload-list="false" :headers="upload.headers" :on-error="Imageerror" :on-success="Imagesuccess" :action="upload.url">
-                <Input style="width: 200px" class="myInput"></Input>
                 <Button type="ghost" class="myBtn">上传文件</Button>
               </Upload>
               </col>
@@ -150,7 +146,7 @@ import HeadTopTag from "components/HeadTop";
 import FooterTag from "components/Footer";
 import { getFormByOrder, modifyForm } from "api/product";
 import { deleteFile } from "api/public";
-import enlargeimg from "enlargeimg";
+import enlargeimg from "components/enlargeimg";
 export default {
   data() {
     return {
