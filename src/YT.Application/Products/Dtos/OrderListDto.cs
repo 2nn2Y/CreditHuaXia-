@@ -48,6 +48,10 @@ namespace YT.Products.Dtos
         /// </summary>
         public string Contact { get; set; }
         /// <summary>
+        /// 客户名称
+        /// </summary>
+        public string CustomerName { get; set; }
+        /// <summary>
         /// 状态
         /// </summary>
         public bool? State { get; set; }

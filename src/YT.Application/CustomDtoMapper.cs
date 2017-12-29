@@ -43,12 +43,13 @@ namespace YT
             mapper.CreateMap<FormProfile, FormProfileDto>()
                 .ForMember(dto => dto.ProfileName, opt => opt.MapFrom(c => c.Profile.Name))
                 .ForMember(dto => dto.ProfileUrl, opt => opt.MapFrom(c => Host + c.Profile.Url));
-           
+
 
             mapper.CreateMap<Order, OrderListDto>()
                 .ForMember(dto => dto.Mobile, options => options.MapFrom(c => c.Customer.Mobile))
                 .ForMember(dto => dto.Contact, options => options.MapFrom(c => c.Customer.Contact))
-                .ForMember(dto => dto.CompanyName, options => options.MapFrom(c => c.Customer.CompanyName));
+                .ForMember(dto => dto.CompanyName, options => options.MapFrom(c => c.Customer.CompanyName))
+                .ForMember(dto => dto.CustomerName, opt => opt.MapFrom(c => c.Form.CompanyName));
 
             mapper.CreateMap<Order, OrderExportDto>()
                 .ForMember(dto => dto.Mobile, options => options.MapFrom(c => c.Customer.Mobile))

@@ -30,9 +30,9 @@
             </table>
         </Row>
         <Row>
-            <Col :span="8"> 公司名称:{{order.companyName }}
+            <Col :span="8"> 代理商名称:{{order.companyName }}
             </Col>
-            <Col :span="8"> 联系人名称:{{order.contact }}
+            <Col :span="8"> 客户名称:{{order.customerName }}
             </Col>
             <Col :span="8"> 商品总价:{{order.totalPrice }}
             </Col>

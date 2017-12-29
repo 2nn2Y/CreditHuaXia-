@@ -70,8 +70,8 @@ export default {
           key: "totalPrice"
         },
         {
-          title: "联系人",
-          key: "contact"
+          title: "客户名称",
+          key: "customerName"
         },
         {
           title: "代理商名称",
