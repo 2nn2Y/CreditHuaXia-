@@ -8,8 +8,9 @@
     <div v-if="orders.length>0" class="orderMain">
       <div v-for="item in orders" :key="item.id">
         <Row class="orderTop">
-          <Col span="12">订单号：{{ item.orderNum }}</Col>
-          <Col span="8" offset="4" class="text-right">{{ item.creationTime | formatDate }}</Col>
+          <Col span="8">订单号：{{ item.orderNum }}</Col>
+          <Col  v-if="item.customerName" span="8">客户名称：{{ item.customerName }}</Col>
+          <Col span="8" class="text-right">{{ item.creationTime | formatDate }}</Col>
         </Row>
         <Row class="orderRow">
           <Col span="2">
@@ -20,7 +21,6 @@
           </Col>
         </Row>
         <Row class="orderCon">
-          <span  class="customer"><p v-if="item.formId&&item.customerName">客户名称:{{ item.customerName }}</p></span>
           <span>单价：{{ item.price }}元</span>
           <span>数量：{{ item.count }}</span>
           <span>合计：￥{{ item.totalPrice }}</span>
